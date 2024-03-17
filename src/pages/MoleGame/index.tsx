@@ -1,9 +1,9 @@
 import React from "react"
 
-const MoleGamePage = () => {
+const Index = () => {
     return (
         <div>두더지게임</div>
     )
 }
 
-export default MoleGamePage
+export default Index

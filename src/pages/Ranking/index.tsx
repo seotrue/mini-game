@@ -1,10 +1,10 @@
 import React from "react"
 
 
-const RankingPage = () => {
+const Index = () => {
     return (
         <div>순위화면</div>
     )
 }
 
-export default RankingPage
+export default Index

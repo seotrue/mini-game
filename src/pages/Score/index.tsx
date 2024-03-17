@@ -1,10 +1,10 @@
 import React from "react"
 
 
-const ScorePage = () => {
+const Index = () => {
     return (
         <div>점수화면</div>
     )
 }
 
-export default ScorePage
+export default Index

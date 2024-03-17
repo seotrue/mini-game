@@ -1,7 +1,7 @@
 import path from 'path';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-import webpack, { Configuration as WebpackConfiguration } from "webpack";
-import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
+import webpack, { Configuration as WebpackConfiguration } from 'webpack';
+import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
@@ -18,10 +18,12 @@ const config: Configuration = {
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
-      'hooks': path.resolve(__dirname, './src/hooks'),
-      'components': path.resolve(__dirname, './src/components'),
-      'pages': path.resolve(__dirname, './src/pages'),
-      'helpers': path.resolve(__dirname, './src/helpers'),
+      hooks: path.resolve(__dirname, './src/hooks'),
+      components: path.resolve(__dirname, './src/components'),
+      pages: path.resolve(__dirname, './src/pages'),
+      helpers: path.resolve(__dirname, './src/helpers'),
+      types: path.resolve(__dirname, './src/types'),
+      store: path.resolve(__dirname, './src/store'),
     },
   },
   entry: {
@@ -77,6 +79,7 @@ const config: Configuration = {
     port: 3000,
     devMiddleware: { publicPath: '/dist/' },
     static: { directory: path.resolve(__dirname) },
+    hot: true,
   },
 };
 
