@@ -3,8 +3,8 @@ import { atom } from 'recoil';
 import { IUserGameSetting } from 'types/gameSettingTypes';
 
 // export const { persistAtom } = recoilPersist({
-// 	key: 'recoil-persist', //원하는 key 값 입력
-// 	storage: sessionStorage
+//   key: 'recoil-persist', //원하는 key 값 입력
+//   storage: sessionStorage,
 // });
 
 export const userGameSettingState = atom<IUserGameSetting>({

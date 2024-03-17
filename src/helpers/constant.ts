@@ -5,4 +5,7 @@ export const CONSTANT = {
     SCORE: '/score',
     RANKING: '/ranking',
   },
+  TIME: {
+    TIME_LIMIT: 30000,
+  },
 };

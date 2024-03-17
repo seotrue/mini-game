@@ -1,10 +1,13 @@
 import TextField from 'components/TextField';
 import React from 'react';
-import { useInputGameSetting } from 'pages/GameSetting/useInputGameSetting';
+import { useInputGameSetting } from 'pages/GameSetting/hooks/useInputGameSetting';
 import { isNull } from 'helpers/Util';
 import { userInputGameSettingTypes } from 'types/gameSettingTypes';
+import { useNavigate } from 'react-router-dom';
+import { CONSTANT } from 'helpers/constant';
 
 const Index = () => {
+  const navigate = useNavigate();
   const [rowValue, handleChangeRow, , RowErrorMsg] = useInputGameSetting(null, userInputGameSettingTypes.row);
   const [colValue, handleChangeCol, , ColErrorMsg] = useInputGameSetting(null, userInputGameSettingTypes.col);
   const [moleValue, handleChangeMole, , moleValueErrorMsg] = useInputGameSetting(null, userInputGameSettingTypes.mole);
@@ -38,7 +41,15 @@ const Index = () => {
         disabled={isNull(rowValue) || isNull(colValue)}
         min={1}
       />
+
       <span>{moleValueErrorMsg}</span>
+      <button
+        type="button"
+        onClick={() => navigate(CONSTANT.URL.MOLE_GAME)}
+        disabled={isNull(moleValue) || isNull(rowValue) || isNull(colValue)}
+      >
+        시작
+      </button>
     </>
   );
 };
