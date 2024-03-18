@@ -7,6 +7,7 @@ import { Timer } from 'pages/MoleGame/components/Timer';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { gameScoreListState, userScoreState } from 'store/ScoreAtom';
+import { useMoles } from 'pages/MoleGame/hooks/useMoles';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const Index = () => {
   const [score, setScore] = useState(0);
   const setUserScoreState = useSetRecoilState(userScoreState);
   const setGameScoreListState = useSetRecoilState(gameScoreListState);
+  const { moles, handleWhack } = useMoles(isGamePlaying);
 
   useEffect(() => {
     // 시간 초과
@@ -27,13 +29,17 @@ const Index = () => {
       navigate(CONSTANT.URL.SCORE_RESULT);
     }
   }, [gameStatus]);
-  const onWhack = () => setScore((prevState) => prevState + 1);
+
+  const onWhack = (index) => {
+    handleWhack(index);
+    setScore((prevState) => prevState + 1);
+  };
 
   return (
     <>
       <Timer internalTime={internalTime} />
       <span>점수:{score}</span>
-      <Board isPlaying={isGamePlaying} onWhack={onWhack} />
+      <Board moles={moles} onWhack={onWhack} />
       <Button onClickAction={() => (!isGamePlaying ? onStartGame() : onPausedGame())}>
         {CONSTANT.GAME_STATUS[gameStatus].BUTTON_TEXT}
       </Button>
