@@ -5,8 +5,9 @@ import { Mole } from './Mole';
 
 interface IBoard {
   isPlaying: boolean;
+  onWhack: () => void;
 }
-const Board = ({ isPlaying }: IBoard) => {
+const Board = ({ isPlaying, onWhack }: IBoard) => {
   const { row, col, mole: maxMole } = useRecoilValue(userGameSettingState);
   const [moles, setMoles] = useState(Array.from({ length: row * col }, () => 0) || []);
   useEffect(() => {
@@ -26,8 +27,8 @@ const Board = ({ isPlaying }: IBoard) => {
         setTimeout(() => {
           newMoles[randomIndex] = 0;
           setMoles(newMoles);
-        }, 200); //Math.random() * 1000 + 300);
-      }, 500);
+        }, 1000); //Math.random() * 1000 + 300);
+      }, 1000);
     }
     return () => {
       clearInterval(moleInterval);
@@ -37,9 +38,11 @@ const Board = ({ isPlaying }: IBoard) => {
   const handleWhack = (idx) => {
     if (!isPlaying || moles[idx] === 0) return;
     // 점수 올리기, 두더지들어가기
+    console.log('두더지 클릭');
     const newMoles = [...moles];
     newMoles[idx] = 0;
     setMoles(newMoles);
+    onWhack();
   };
 
   return (

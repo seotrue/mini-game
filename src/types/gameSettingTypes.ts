@@ -9,3 +9,7 @@ export interface IUserGameSetting {
   col: number | null;
   mole: number | null;
 }
+export interface IUserScore {
+  date: string | null;
+  score: number | null;
+}

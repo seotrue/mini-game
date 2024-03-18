@@ -6,6 +6,7 @@ export const useTimer = (time) => {
   const navigate = useNavigate();
   const [internalTime, setInternalTime] = useState(time);
   const [isGamePlaying, setIsGamePlaying] = useState(false);
+  const [gameStatus, setGameStatus] = useState(CONSTANT.GAME_STATUS.END.ID);
   const timerRef = useRef(time);
 
   useEffect(() => {
@@ -17,6 +18,7 @@ export const useTimer = (time) => {
           clearInterval(timerRef.current);
           setInternalTime(time);
           setIsGamePlaying(false);
+          setGameStatus(CONSTANT.GAME_STATUS.TIME_OVER.ID);
         }
       }, 1000);
     }
@@ -26,9 +28,11 @@ export const useTimer = (time) => {
 
   const onStartGame = () => {
     setIsGamePlaying(true);
+    setGameStatus(CONSTANT.GAME_STATUS.PLAYING.ID);
   };
-  const onStopGame = () => {
+  const onPausedGame = () => {
     setIsGamePlaying(false);
+    setGameStatus(CONSTANT.GAME_STATUS.PAUSED.ID);
   };
 
   const onEndGame = () => {
@@ -41,7 +45,8 @@ export const useTimer = (time) => {
     internalTime,
     isGamePlaying,
     onStartGame,
-    onStopGame,
+    onPausedGame,
     onEndGame,
+    gameStatus,
   };
 };
