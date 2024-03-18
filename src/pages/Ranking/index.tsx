@@ -2,9 +2,10 @@ import React from 'react';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { gameRankingListState, gameScoreListState } from 'store/ScoreAtom';
 import { Button } from 'components/Button';
+import { IUserScore } from 'types/gameSettingTypes';
 
 const Index = () => {
-  const gameRakingList = useRecoilValue(gameRankingListState);
+  const gameRakingList: IUserScore[] = useRecoilValue(gameRankingListState) || [];
   const resetRakingList = useResetRecoilState(gameScoreListState);
   //  TODO:1-3 보드 크기에 따른 점수랭킹
   return (
