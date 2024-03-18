@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil';
 import { userGameSettingState } from 'store/gameSettingAtom';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 export const useMoles = (isPlaying) => {
   const { row, col, mole: maxMole } = useRecoilValue(userGameSettingState);
@@ -9,7 +9,6 @@ export const useMoles = (isPlaying) => {
   useEffect(() => {
     let moleInterval;
     if (isPlaying) {
-      // 랜덤 두더지 나오기
       const updateMoles = getRandomMoles();
       moleInterval = setInterval(() => {
         setMoles(updateMoles);
@@ -22,23 +21,29 @@ export const useMoles = (isPlaying) => {
 
   const getRandomMoles = () => {
     const updateMoles = moles.map((mole) => (mole = 0));
-    let randomIndexArray = [];
-
+    // 랜덤 두더지 삽입
     for (let i = 0; i < maxMole; i++) {
-      let randomIndex = Math.floor(Math.random() * moles.length);
-      randomIndex = updateMoles[randomIndex] === 1 ? Math.floor(Math.random() * moles.length) : randomIndex;
-      randomIndexArray.push(randomIndex);
+      const randomIndex = duplicateWithoutRandomIndex(updateMoles);
       updateMoles[randomIndex] = 1;
     }
+    // 랜덤 폭탄 삽입
+    const randomIndex = duplicateWithoutRandomIndex(updateMoles);
+    updateMoles[randomIndex] = 2;
+
     return updateMoles;
   };
+
+  const duplicateWithoutRandomIndex = useCallback((updateMoles) => {
+    let randomIndex = Math.floor(Math.random() * moles.length);
+    return updateMoles[randomIndex] === 1 ? Math.floor(Math.random() * moles.length) : randomIndex;
+  }, []);
+
   const handleWhack = (idx) => {
-    if (!isPlaying || moles[idx] === 0) return;
-    // 점수 올리기, 두더지들어가기
     const newMoles = [...moles];
     newMoles[idx] = 0;
     // todo: fix 클릭 시 getRandomMoles 렌더링 멈춤
     setMoles(newMoles);
   };
+
   return { moles, handleWhack };
 };

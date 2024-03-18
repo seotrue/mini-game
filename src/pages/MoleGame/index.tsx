@@ -31,8 +31,10 @@ const Index = () => {
   }, [gameStatus]);
 
   const onWhack = (index) => {
+    if (!isGamePlaying || moles[index] === 0) return;
     handleWhack(index);
-    setScore((prevState) => prevState + 1);
+    if (moles[index] === 1) setScore((prevState) => prevState + 1);
+    if (moles[index] === 2) setScore((prevState) => (prevState === 0 ? 0 : prevState - 1));
   };
 
   return (

@@ -2,6 +2,7 @@ import TextField from 'components/TextField';
 import React, { useState } from 'react';
 import { isNull } from 'helpers/Util';
 import { useValidation } from 'pages/GameSetting/hooks/useValidation';
+import { Button } from 'components/Button';
 
 const Index = () => {
   const {
@@ -49,13 +50,9 @@ const Index = () => {
       />
 
       <span>{moleValueErrorMsg}</span>
-      <button
-        type="button"
-        onClick={() => handleStartGame()}
-        disabled={isNull(moleValue) || !isNull(moleValueErrorMsg)}
-      >
+      <Button onClickAction={() => handleStartGame()} disabled={isNull(moleValue) || !isNull(moleValueErrorMsg)}>
         시작
-      </button>
+      </Button>
     </>
   );
 };

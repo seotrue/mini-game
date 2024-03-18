@@ -19,7 +19,7 @@ const Board = ({ moles, onWhack }: IBoard) => {
             key={index}
             onClick={() => onWhack(index)}
           >
-            {mole ? '두더지' : ''}
+            <div onClick={() => onWhack(index)}>{mole === 1 ? '두더지' : mole === 2 ? '폭탄' : ''}</div>
           </div>
         ))}
       </div>
