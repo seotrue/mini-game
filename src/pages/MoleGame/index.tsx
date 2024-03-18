@@ -15,7 +15,7 @@ const Index = () => {
   return (
     <>
       <Timer internalTime={internalTime} />
-      <Board />
+      <Board isPlaying={isGamePlaying} />
       <Button onClickAction={() => (!isGamePlaying ? onStartGame() : onStopGame())}>{progressButtonText}</Button>
       <Button onClickAction={onEndGame}> 그만하기</Button>
     </>

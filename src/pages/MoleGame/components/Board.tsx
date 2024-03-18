@@ -1,24 +1,27 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userGameSettingState } from 'store/gameSettingAtom';
+import { Mole } from './Mole';
 
-const Board = () => {
+interface IBoard {
+  isPlaying: boolean;
+}
+const Board = ({ isPlaying }: IBoard) => {
   const { row, col } = useRecoilValue(userGameSettingState);
-  const boardRow = useRef(Array.from({ length: row }, () => null) || []);
-  const boardCol = useRef(Array.from({ length: col }, () => null) || []);
+  const [moles, setMoles] = useState(Array.from({ length: row * col }, () => false) || []);
 
   return (
     <>
-      {/* todo: 임시 인라인 스타일 적용, 삭제예정 */}
       <h1>Board</h1>
-      <div style={{ display: 'table' }}>
-        {boardRow.current.map((tblRow, index) => (
-          <div className="row" style={{ display: 'table-row', border: '1px solid #ccc' }}>
-            {boardCol.current.map((cell, i) => (
-              <div className="cell" style={{ display: 'table-cell', border: '1px solid #ccc' }}>
-                cell
-              </div>
-            ))}
+      {/* todo: 임시 인라인 스타일 적용, 삭제예정 */}
+      <div>
+        {moles.map((tblRow, index) => (
+          <div
+            key={index}
+            style={(index + 1) % col === 0 ? { display: 'block' } : { display: 'inline-block', float: 'left' }}
+          >
+            <div style={{ display: 'table-col' }}></div>
+            두더지
           </div>
         ))}
       </div>
