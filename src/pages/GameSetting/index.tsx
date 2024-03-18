@@ -1,16 +1,22 @@
 import TextField from 'components/TextField';
-import React from 'react';
-import { useInputGameSetting } from 'pages/GameSetting/hooks/useInputGameSetting';
+import React, { useState } from 'react';
 import { isNull } from 'helpers/Util';
-import { userInputGameSettingTypes } from 'types/gameSettingTypes';
-import { useNavigate } from 'react-router-dom';
-import { CONSTANT } from 'helpers/constant';
+import { useValidation } from 'pages/GameSetting/hooks/useValidation';
 
 const Index = () => {
-  const navigate = useNavigate();
-  const [rowValue, handleChangeRow, , RowErrorMsg] = useInputGameSetting(null, userInputGameSettingTypes.row);
-  const [colValue, handleChangeCol, , ColErrorMsg] = useInputGameSetting(null, userInputGameSettingTypes.col);
-  const [moleValue, handleChangeMole, , moleValueErrorMsg] = useInputGameSetting(null, userInputGameSettingTypes.mole);
+  const {
+    rowValue,
+    colValue,
+    moleValue,
+    handleChangeRow,
+    handleChangeCol,
+    handleChangeMole,
+    rowErrorMsg,
+    colErrorMsg,
+    moleValueErrorMsg,
+    handleStartGame,
+  } = useValidation();
+
   return (
     <>
       <TextField
@@ -31,7 +37,7 @@ const Index = () => {
         min={2}
         max={6}
       />
-      <span>{RowErrorMsg || ColErrorMsg}</span>
+      <span>{rowErrorMsg || colErrorMsg}</span>
       <TextField
         label={'두더지'}
         id={'mole'}
@@ -45,7 +51,7 @@ const Index = () => {
       <span>{moleValueErrorMsg}</span>
       <button
         type="button"
-        onClick={() => navigate(CONSTANT.URL.MOLE_GAME)}
+        onClick={() => handleStartGame()}
         disabled={isNull(moleValue) || !isNull(moleValueErrorMsg)}
       >
         시작
