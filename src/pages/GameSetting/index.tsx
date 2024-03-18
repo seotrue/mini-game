@@ -46,7 +46,7 @@ const Index = () => {
       <button
         type="button"
         onClick={() => navigate(CONSTANT.URL.MOLE_GAME)}
-        disabled={isNull(moleValue) || isNull(rowValue) || isNull(colValue)}
+        disabled={isNull(moleValue) || !isNull(moleValueErrorMsg)}
       >
         시작
       </button>
