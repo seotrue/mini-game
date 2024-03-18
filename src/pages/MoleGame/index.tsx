@@ -21,7 +21,7 @@ const Index = () => {
     // 시간 초과
     if (gameStatus === CONSTANT.GAME_STATUS.TIME_OVER.ID) {
       const date = new Date();
-      const addState = { score, date: date.toLocaleTimeString() };
+      const addState = { score, date: date.toLocaleString() };
       setUserScoreState(addState);
       setGameScoreListState((prev) => [...prev, addState]);
       navigate(CONSTANT.URL.SCORE_RESULT);

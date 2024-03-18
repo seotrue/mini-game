@@ -1,4 +1,4 @@
-import { atom, selector } from 'recoil';
+import { atom, DefaultValue, selector } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
 import { IUserGameSetting, IUserScore } from 'types/gameSettingTypes';
 
