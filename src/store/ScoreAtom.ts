@@ -15,9 +15,16 @@ export const userScoreState = atom<IUserScore>({
   },
   effects_UNSTABLE: [persistAtom],
 });
-
 export const gameScoreListState = atom<IUserScore[]>({
   key: '#gameScoreListState', //
   default: [],
   effects_UNSTABLE: [persistAtom],
+});
+
+export const gameRankingListState = selector<IUserScore[]>({
+  key: '#gameRankingListState',
+  get: ({ get }) => {
+    const gameList = get(gameScoreListState).slice();
+    return [...gameList].sort((a, b) => b.score - a.score).slice(0, 10);
+  },
 });
