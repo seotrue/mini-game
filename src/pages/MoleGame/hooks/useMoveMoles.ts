@@ -1,10 +1,12 @@
 import { useRecoilValue } from 'recoil';
 import { userGameSettingState } from 'store/gameSettingAtom';
 import { useCallback, useEffect, useState } from 'react';
+import { CONSTANT } from 'helpers/constant';
 
 export const useMoveMoles = (isPlaying) => {
   const { row, col, mole: maxMole } = useRecoilValue(userGameSettingState);
   const [moles, setMoles] = useState(Array.from({ length: row * col }, () => 0) || []);
+  const [showTime, setShowTime] = useState(CONSTANT.TIME.MAX_SHOW_MOLE_TIME);
 
   useEffect(() => {
     let moleInterval;
@@ -12,12 +14,12 @@ export const useMoveMoles = (isPlaying) => {
       const updateMoles = getRandomMoles();
       moleInterval = setInterval(() => {
         setMoles(updateMoles);
-      }, 700);
+      }, showTime);
     }
     return () => {
       clearInterval(moleInterval);
     };
-  }, [isPlaying, moles]);
+  }, [isPlaying, moles, showTime]);
 
   const getRandomMoles = () => {
     const updateMoles = moles.map((mole) => (mole = 0));
@@ -45,5 +47,5 @@ export const useMoveMoles = (isPlaying) => {
     setMoles(newMoles);
   };
 
-  return { moles, handleWhack };
+  return { moles, handleWhack, showTime, setShowTime };
 };

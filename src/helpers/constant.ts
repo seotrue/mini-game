@@ -7,6 +7,8 @@ export const CONSTANT = {
   },
   TIME: {
     TIME_LIMIT: 60000,
+    MIN_SHOW_MOLE_TIME: 400,
+    MAX_SHOW_MOLE_TIME: 1000,
   },
   GAME_STATUS: {
     PLAYING: {
@@ -25,5 +27,10 @@ export const CONSTANT = {
       ID: 'END',
       BUTTON_TEXT: '시작하기',
     }, // 시작 전
+  },
+  SCORE: {
+    MOLE: 1,
+    BOMB: 2,
+    NONE: 0,
   },
 };

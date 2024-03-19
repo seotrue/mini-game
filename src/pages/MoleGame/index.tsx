@@ -12,7 +12,7 @@ const Index = () => {
   const { internalTime, isGamePlaying, onStartGame, onPausedGame, onEndGame, gameStatus } = useTimer(
     CONSTANT.TIME.TIME_LIMIT,
   );
-  const { moles, score, onWhack } = useMoleGame(gameStatus, isGamePlaying);
+  const { moles, score, onWhack } = useMoleGame(gameStatus, isGamePlaying, internalTime);
 
   return (
     <section className={styles.innerWrap}>
