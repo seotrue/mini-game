@@ -17,6 +17,7 @@
       "helpers/*": ["helpers/*"],
       "types/*": ["types/*"],
       "store/*": ["store/*"],
+      "styles/*": ["styles/*"],
     }
   },
   "ts-node": {

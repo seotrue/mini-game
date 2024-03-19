@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { isNull } from 'helpers/Util';
 import { useValidation } from 'pages/GameSetting/hooks/useValidation';
 import { Button } from 'components/Button';
-
+import 'styles/index.scss';
 const Index = () => {
   const {
     rowValue,
@@ -19,8 +19,8 @@ const Index = () => {
   } = useValidation();
 
   return (
-    <section>
-      <h2 hidden>준비화면</h2>
+    <section className={'inner-wrap'}>
+      <h2>[두더지 게임 준비화면]</h2>
       <TextField
         label={'열'}
         id={'row'}
@@ -29,6 +29,7 @@ const Index = () => {
         onChange={handleChangeRow}
         min={2}
         max={6}
+        errMsg={rowErrorMsg}
       />
       <TextField
         label={'행'}
@@ -38,8 +39,8 @@ const Index = () => {
         onChange={handleChangeCol}
         min={2}
         max={6}
+        errMsg={colErrorMsg}
       />
-      <span>{rowErrorMsg || colErrorMsg}</span>
       <TextField
         label={'두더지'}
         id={'mole'}
@@ -48,9 +49,8 @@ const Index = () => {
         onChange={handleChangeMole}
         disabled={isNull(rowValue) || isNull(colValue)}
         min={1}
+        errMsg={moleValueErrorMsg}
       />
-
-      <span>{moleValueErrorMsg}</span>
       <Button onClickAction={() => handleStartGame()} disabled={isNull(moleValue) || !isNull(moleValueErrorMsg)}>
         시작
       </Button>

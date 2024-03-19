@@ -24,6 +24,7 @@ const config: Configuration = {
       helpers: path.resolve(__dirname, './src/helpers'),
       types: path.resolve(__dirname, './src/types'),
       store: path.resolve(__dirname, './src/store'),
+      styles: path.resolve(__dirname, './src/styles'),
     },
   },
   entry: {
@@ -53,6 +54,10 @@ const config: Configuration = {
           },
         },
         exclude: path.join(__dirname, 'node_modules'),
+      },
+      {
+        test: /\.css?$/,
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.scss$/,
