@@ -6,7 +6,7 @@ export const CONSTANT = {
     RANKING: '/ranking',
   },
   TIME: {
-    TIME_LIMIT: 30000,
+    TIME_LIMIT: 60000,
   },
   GAME_STATUS: {
     PLAYING: {

@@ -9,13 +9,13 @@ const Index = () => {
   const navigate = useNavigate();
   const userScore = useRecoilValue(userScoreState);
   return (
-    <>
-      <h1>점수화면</h1>
+    <section>
+      <h2 hidden>점수 화면</h2>
       <p>최종점수</p>
       <p>{userScore.score}</p>
       <Button onClickAction={() => navigate(CONSTANT.URL.MOLE_GAME)}>다시하기</Button>
       <Button onClickAction={() => navigate(CONSTANT.URL.START)}>처음으로</Button>
-    </>
+    </section>
   );
 };
 

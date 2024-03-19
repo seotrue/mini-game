@@ -9,8 +9,8 @@ const Index = () => {
   const resetRakingList = useResetRecoilState(gameScoreListState);
   //  TODO:1-3 보드 크기에 따른 점수랭킹
   return (
-    <>
-      <h1>순위화면</h1>
+    <section>
+      <h2 hidden>순위화면</h2>
       {gameRakingList.length ? (
         <>
           {gameRakingList.map((item, idx) => {
@@ -27,7 +27,7 @@ const Index = () => {
       ) : (
         <p>등록된 점수가 없습니다.</p>
       )}
-    </>
+    </section>
   );
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Common.module.scss';
 
 interface IButton {
   onClickAction: () => void;
@@ -7,7 +8,7 @@ interface IButton {
 }
 export const Button = ({ children, onClickAction, disabled = false }: IButton) => {
   return (
-    <button disabled={disabled} onClick={onClickAction}>
+    <button className={styles.commonButton} disabled={disabled} onClick={onClickAction}>
       {children}
     </button>
   );

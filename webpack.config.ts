@@ -2,7 +2,7 @@ import path from 'path';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import webpack, { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
 }
@@ -16,7 +16,7 @@ const config: Configuration = {
   mode: isDevelopment ? 'development' : 'production',
   devtool: !isDevelopment ? 'hidden-source-map' : 'eval',
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', 'css', 'scss'],
     alias: {
       hooks: path.resolve(__dirname, './src/hooks'),
       components: path.resolve(__dirname, './src/components'),
@@ -55,8 +55,8 @@ const config: Configuration = {
         exclude: path.join(__dirname, 'node_modules'),
       },
       {
-        test: /\.css?$/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.scss$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
     ],
   },
@@ -67,6 +67,7 @@ const config: Configuration = {
       //   files: "./src/**/*",
       // },
     }),
+    new MiniCssExtractPlugin(),
     new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
   ],
   output: {

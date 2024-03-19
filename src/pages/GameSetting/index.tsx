@@ -19,7 +19,8 @@ const Index = () => {
   } = useValidation();
 
   return (
-    <>
+    <section>
+      <h2 hidden>준비화면</h2>
       <TextField
         label={'열'}
         id={'row'}
@@ -53,7 +54,7 @@ const Index = () => {
       <Button onClickAction={() => handleStartGame()} disabled={isNull(moleValue) || !isNull(moleValueErrorMsg)}>
         시작
       </Button>
-    </>
+    </section>
   );
 };
 

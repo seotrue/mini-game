@@ -1,0 +1,52 @@
+.borderWrap{
+  width:100%;
+  background: #b1dad4;
+  white-space: nowrap;
+  .cell {
+    white-space: nowrap;
+    display: inline-block;
+    background:url('../../assets/image/hole.png') no-repeat;
+    background-size: contain;
+    background-position-x: 4px;
+    float:left;
+    width:100px;
+    height:100px;
+    margin: 50px;
+
+    .mole {
+      opacity: 0;
+      cursor: pointer;
+      transition: all 0.2s ease-in;
+      width: 100%;
+      text-align: center;
+      &.up{
+        opacity: 1;
+        cursor: pointer;
+        width:100px;
+        height:100px;
+        background-size: contain;
+      }
+      img {
+        height: 100px;
+      }
+    }
+  }
+  .lineBreak {
+    &:after {
+      clear: both;
+      display: block;
+      content: "";
+    }
+    & +.cell {
+      clear: both;
+      display: block;
+      content: "";
+    }
+  }
+
+  &:after {
+    clear: both;
+    display: block;
+    content: "";
+  }
+}
