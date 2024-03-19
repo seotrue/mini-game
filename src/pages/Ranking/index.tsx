@@ -3,27 +3,28 @@ import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { gameRankingListState, gameScoreListState } from 'store/ScoreAtom';
 import { Button } from 'components/Button';
 import { IUserScore } from 'types/gameSettingTypes';
+import styles from './Ranking.module.scss';
 
 const Index = () => {
   const gameRakingList: IUserScore[] = useRecoilValue(gameRankingListState) || [];
   const resetRakingList = useResetRecoilState(gameScoreListState);
   //  TODO:1-3 보드 크기에 따른 점수랭킹
   return (
-    <section>
+    <section className={styles.innerWrap}>
       <h2 hidden>순위화면</h2>
       {gameRakingList.length ? (
-        <>
+        <ul>
           {gameRakingList.map((item, idx) => {
             return (
-              <div key={idx}>
+              <li key={idx}>
                 <p>순위 {idx + 1}</p>
                 <p>점수: {item.score}</p>
                 <p>날짜: {item.date}</p>
-              </div>
+              </li>
             );
           })}
           <Button onClickAction={() => resetRakingList()}>초기화 하기</Button>
-        </>
+        </ul>
       ) : (
         <p>등록된 점수가 없습니다.</p>
       )}

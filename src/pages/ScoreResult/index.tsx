@@ -4,17 +4,22 @@ import { useRecoilValue } from 'recoil';
 import { userScoreState } from 'store/ScoreAtom';
 import { useNavigate } from 'react-router-dom';
 import { CONSTANT } from 'helpers/constant';
+import styles from './ScoreResult.module.scss';
 
 const Index = () => {
   const navigate = useNavigate();
   const userScore = useRecoilValue(userScoreState);
   return (
-    <section>
+    <section className={styles.innerWrap}>
       <h2 hidden>점수 화면</h2>
-      <p>최종점수</p>
-      <p>{userScore.score}</p>
-      <Button onClickAction={() => navigate(CONSTANT.URL.MOLE_GAME)}>다시하기</Button>
-      <Button onClickAction={() => navigate(CONSTANT.URL.START)}>처음으로</Button>
+      <h3>최종점수</h3>
+      <p className={styles.score}>{userScore.score}</p>
+      <Button className={styles.btn} onClickAction={() => navigate(CONSTANT.URL.MOLE_GAME)}>
+        다시하기
+      </Button>
+      <Button className={styles.btn} onClickAction={() => navigate(CONSTANT.URL.START)}>
+        처음으로
+      </Button>
     </section>
   );
 };

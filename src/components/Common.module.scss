@@ -1,12 +1,6 @@
-@import "styles/_variable.scss";
+@import "styles/_mixin.scss";
 .commonButton {
-  display: inline-block;
-  width: 90%;
-  padding:15px 20px;
-  border: 1px solid #7511ff;
-  border-radius: 5px;
-  background: $MAIN_BUTTON_COLOR;
-  color: #fff;
+  @include commonButtonMixin(100%);
 }
 
 .textField {
@@ -14,9 +8,8 @@
   width: 100%;
   margin-bottom: 10px;
   label {
+    @include fontTitle;
     width: 20%;
-    font-size:20px;
-    font-weight:bold;
   }
   input {
     width: 70%;

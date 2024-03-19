@@ -4,6 +4,8 @@ import { isNull } from 'helpers/Util';
 import { useValidation } from 'pages/GameSetting/hooks/useValidation';
 import { Button } from 'components/Button';
 import 'styles/index.scss';
+import styles from './GameSetting.module.scss';
+
 const Index = () => {
   const {
     rowValue,
@@ -19,7 +21,7 @@ const Index = () => {
   } = useValidation();
 
   return (
-    <section className={'inner-wrap'}>
+    <section className={styles.innerWrap}>
       <h2>[두더지 게임 준비화면]</h2>
       <TextField
         label={'열'}
