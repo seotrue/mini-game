@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { userGameSettingState } from 'store/gameSettingAtom';
 
@@ -8,6 +8,7 @@ interface IBoard {
 }
 const Board = ({ moles, onWhack }: IBoard) => {
   const { col } = useRecoilValue(userGameSettingState);
+
   return (
     <div className={'borderWrap'}>
       <h1>Board</h1>

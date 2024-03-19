@@ -4,38 +4,13 @@ import { Button } from 'components/Button';
 import { useTimer } from 'pages/MoleGame/hooks/useTimer';
 import { CONSTANT } from 'helpers/constant';
 import { Timer } from 'pages/MoleGame/components/Timer';
-import { useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
-import { gameScoreListState, userScoreState } from 'store/ScoreAtom';
-import { useMoles } from 'pages/MoleGame/hooks/useMoles';
+import { useMoleGame } from 'pages/MoleGame/hooks/useMoleGame';
 
 const Index = () => {
-  const navigate = useNavigate();
   const { internalTime, isGamePlaying, onStartGame, onPausedGame, onEndGame, gameStatus } = useTimer(
     CONSTANT.TIME.TIME_LIMIT,
   );
-  const [score, setScore] = useState(0);
-  const setUserScoreState = useSetRecoilState(userScoreState);
-  const setGameScoreListState = useSetRecoilState(gameScoreListState);
-  const { moles, handleWhack } = useMoles(isGamePlaying);
-
-  useEffect(() => {
-    // 시간 초과
-    if (gameStatus === CONSTANT.GAME_STATUS.TIME_OVER.ID) {
-      const date = new Date();
-      const addState = { score, date: date.toLocaleString() };
-      setUserScoreState(addState);
-      setGameScoreListState((prev) => [...prev, addState]);
-      navigate(CONSTANT.URL.SCORE_RESULT);
-    }
-  }, [gameStatus]);
-
-  const onWhack = (index) => {
-    if (!isGamePlaying || moles[index] === 0) return;
-    handleWhack(index);
-    if (moles[index] === 1) setScore((prevState) => prevState + 1);
-    if (moles[index] === 2) setScore((prevState) => (prevState === 0 ? 0 : prevState - 1));
-  };
+  const { moles, score, onWhack } = useMoleGame(gameStatus, isGamePlaying);
 
   return (
     <>

@@ -1,8 +1,8 @@
 import { useRecoilValue } from 'recoil';
 import { userGameSettingState } from 'store/gameSettingAtom';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-export const useMoles = (isPlaying) => {
+export const useMoveMoles = (isPlaying) => {
   const { row, col, mole: maxMole } = useRecoilValue(userGameSettingState);
   const [moles, setMoles] = useState(Array.from({ length: row * col }, () => 0) || []);
 
