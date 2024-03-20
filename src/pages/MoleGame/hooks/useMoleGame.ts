@@ -1,5 +1,5 @@
 import { useSetRecoilState } from 'recoil';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gameScoreListState, userScoreState } from 'store/scoreAtom';
 import { useMoveMoles } from 'pages/MoleGame/hooks/useMoveMoles';
 import { CONSTANT } from 'helpers/constant';
@@ -11,6 +11,7 @@ export const useMoleGame = (gameStatus, isGamePlaying, internalTime) => {
   const setUserScoreState = useSetRecoilState(userScoreState);
   const setGameScoreListState = useSetRecoilState(gameScoreListState);
   const { moles, handleWhack, showTime, setShowTime } = useMoveMoles(isGamePlaying);
+  const prevIndex = useRef(null);
 
   useEffect(() => {
     // 시간 초과
@@ -38,6 +39,8 @@ export const useMoleGame = (gameStatus, isGamePlaying, internalTime) => {
   };
 
   const calculateScore = (index) => {
+    if (index === prevIndex.current) return;
+    prevIndex.current = index;
     if (moles[index] === 1) setScore((prevState) => prevState + 1);
     if (moles[index] === 2) setScore((prevState) => (prevState === 0 ? 0 : prevState - 1));
   };
