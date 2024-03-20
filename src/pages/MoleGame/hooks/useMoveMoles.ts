@@ -1,14 +1,13 @@
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { userGameSettingState } from 'store/gameSettingAtom';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { CONSTANT } from 'helpers/constant';
+import { isNull } from 'helpers/Util';
 
 export const useMoveMoles = (isPlaying) => {
   const { row, col, mole: maxMole } = useRecoilValue(userGameSettingState);
   const [moles, setMoles] = useState(Array.from({ length: row * col }, () => 0) || []);
   const [showTime, setShowTime] = useState(CONSTANT.TIME.MAX_SHOW_MOLE_TIME);
-  const whacked = useRef<number>(0);
-  const ref = useRef(null);
 
   useEffect(() => {
     let moleInterval;
@@ -41,13 +40,7 @@ export const useMoveMoles = (isPlaying) => {
     return updateMoles[randomIndex] === 1 ? Math.floor(Math.random() * moles.length) : randomIndex;
   }, []);
 
-  // useEffect(() => {
-  //   return () => clearTimeout(ref.current);
-  // }, []);
-
   const handleWhack = (idx) => {
-    // todo: fix 클릭 시 getRandomMoles 렌더링 멈춤
-    // 원인: uesEffect 랜더링하기전에 자꾸 전의 값 기억
     const newMoles = [...moles];
     newMoles[idx] = 0;
     setMoles(newMoles);

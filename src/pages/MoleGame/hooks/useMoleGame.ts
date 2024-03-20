@@ -1,4 +1,4 @@
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { useEffect, useState } from 'react';
 import { gameScoreListState, userScoreState } from 'store/scoreAtom';
 import { useMoveMoles } from 'pages/MoleGame/hooks/useMoveMoles';

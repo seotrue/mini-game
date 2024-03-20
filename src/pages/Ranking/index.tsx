@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
+import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { gameRankingListState, gameScoreListState } from 'store/scoreAtom';
 import { Button } from 'components/Button';
 import { IUserScore } from 'types/gameSettingTypes';
