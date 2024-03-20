@@ -11,5 +11,5 @@ export interface IUserGameSetting {
 }
 export interface IUserScore {
   date: string | null;
-  score: number | null;
+  score: number;
 }

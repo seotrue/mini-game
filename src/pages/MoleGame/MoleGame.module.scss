@@ -1,11 +1,8 @@
 @import "styles/_mixin.scss";
 .innerWrap {
-  @include innerWrap;
-  max-height:100%;
-  min-height: auto;
-  align-content: flex-start;
+  height: auto;
   padding-top: 30px;
-
+  background: #b1dad4;
   .btn {
     @include commonButtonMixin(45%);
     margin-right: 5px;
@@ -26,7 +23,6 @@
 
   .borderWrap {
     width: calc(100vw - 10%);
-    background: #b1dad4;
     white-space: nowrap;
 
     .guideText {

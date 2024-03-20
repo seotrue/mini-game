@@ -1,6 +1,6 @@
-import { atom, DefaultValue, selector } from 'recoil';
+import { atom, selector } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
-import { IUserGameSetting, IUserScore } from 'types/gameSettingTypes';
+import { IUserScore } from 'types/gameSettingTypes';
 
 export const { persistAtom } = recoilPersist({
   key: 'recoil-persist', //원하는 key 값 입력
@@ -11,7 +11,7 @@ export const userScoreState = atom<IUserScore>({
   key: '#userScoreState', //
   default: {
     date: null,
-    score: null,
+    score: 0,
   },
   effects_UNSTABLE: [persistAtom],
 });

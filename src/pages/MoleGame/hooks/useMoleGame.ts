@@ -1,4 +1,4 @@
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { useEffect, useState } from 'react';
 import { gameScoreListState, userScoreState } from 'store/ScoreAtom';
 import { useMoveMoles } from 'pages/MoleGame/hooks/useMoveMoles';
@@ -23,8 +23,6 @@ export const useMoleGame = (gameStatus, isGamePlaying, internalTime) => {
     }
   }, [gameStatus]);
 
-  // 예시1) 두더지의 노출 시간을 남은시간에 비례하여 줄어들게 하기
-  // 10초단위로 체킹
   useEffect(() => {
     if (showTime <= CONSTANT.TIME.MIN_SHOW_MOLE_TIME || !isGamePlaying) return;
     const restTimeFlag = [10000, 20000, 30000, 40000, 50000].includes(internalTime);
@@ -36,6 +34,10 @@ export const useMoleGame = (gameStatus, isGamePlaying, internalTime) => {
   const onWhack = (index) => {
     if (!isGamePlaying || moles[index] === 0) return;
     handleWhack(index);
+    calculateScore(index);
+  };
+
+  const calculateScore = (index) => {
     if (moles[index] === 1) setScore((prevState) => prevState + 1);
     if (moles[index] === 2) setScore((prevState) => (prevState === 0 ? 0 : prevState - 1));
   };
