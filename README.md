@@ -6,7 +6,7 @@
 ├─src
 │  │  
 │  ├─ assets // assets 파일 관리
-│  │  └─ images
+│  │
 │  │   
 │  ├─ components // 공통 컴포넌트 관리
 │  ├─ helper // 중복 로직 함수들을 pure 함수화 하여 Util 파일 관리, 상수관리

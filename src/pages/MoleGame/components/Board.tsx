@@ -25,9 +25,9 @@ const Board = ({ moles, onWhack }: IBoard) => {
             onClick={(event) => onWhack(index)}
           >
             {mole === CONSTANT.SCORE.MOLE ? (
-              <img src="src/assets/image/mole.png" alt="두더지 이미지" />
+              <img src="src/assets/mole.png" alt="두더지 이미지" />
             ) : mole === CONSTANT.SCORE.BOMB ? (
-              <img src="src/assets/image/bombMole.png" alt="폭탄 이미지" />
+              <img src="src/assets/bombMole.png" alt="폭탄 이미지" />
             ) : (
               ''
             )}

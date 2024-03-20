@@ -25,7 +25,20 @@ input[type="number"]::-webkit-inner-spin-button {
   -moz-appearance: none;
   appearance: none;
 }
-
+body {
+  font-size: 15px;
+  line-height: 1.46668;
+  font-weight: 400;
+  font-variant-ligatures: common-ligatures;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+* {
+  box-sizing: border-box;
+}
+#app {
+  width: 100%;
+}
 /* 파이어폭스에서의 초기화 방법 */
 input[type=number] {
   -moz-appearance: textfield;
