@@ -1,6 +1,6 @@
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { useEffect, useState } from 'react';
-import { gameScoreListState, userScoreState } from 'store/ScoreAtom';
+import { gameScoreListState, userScoreState } from 'store/scoreAtom';
 import { useMoveMoles } from 'pages/MoleGame/hooks/useMoveMoles';
 import { CONSTANT } from 'helpers/constant';
 import { useNavigate } from 'react-router-dom';

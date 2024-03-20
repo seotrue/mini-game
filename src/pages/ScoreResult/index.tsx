@@ -1,10 +1,11 @@
 import { Button } from 'components/Button';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { userScoreState } from 'store/ScoreAtom';
+import { userScoreState } from 'store/scoreAtom';
 import { useNavigate } from 'react-router-dom';
 import { CONSTANT } from 'helpers/constant';
 import styles from './ScoreResult.module.scss';
+import 'styles/index.scss';
 
 const Index = () => {
   const navigate = useNavigate();

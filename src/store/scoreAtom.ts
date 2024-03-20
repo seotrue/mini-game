@@ -13,7 +13,6 @@ export const userScoreState = atom<IUserScore>({
     date: null,
     score: 0,
   },
-  effects_UNSTABLE: [persistAtom],
 });
 export const gameScoreListState = atom<IUserScore[]>({
   key: '#gameScoreListState', //

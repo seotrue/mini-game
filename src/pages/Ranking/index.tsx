@@ -1,9 +1,10 @@
 import React from 'react';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
-import { gameRankingListState, gameScoreListState } from 'store/ScoreAtom';
+import { gameRankingListState, gameScoreListState } from 'store/scoreAtom';
 import { Button } from 'components/Button';
 import { IUserScore } from 'types/gameSettingTypes';
 import styles from './Ranking.module.scss';
+import 'styles/index.scss';
 
 const Index = () => {
   const gameRakingList: IUserScore[] = useRecoilValue(gameRankingListState) || [];

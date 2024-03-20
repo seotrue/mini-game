@@ -3,64 +3,63 @@
   height: auto;
   padding-top: 30px;
   background: #b1dad4;
-  .btn {
-    @include commonButtonMixin(45%);
-    margin-right: 5px;
-
-    &:first-child {
-      margin-right: 5px;
-    }
-  }
-
+  text-align: center;
   .score, .timer {
     @include fontTitle;
-    flex-shrink: 0;
     margin-right: 25px;
     em {
       color: #7511ff;
     }
   }
-
-  .borderWrap {
-    width: calc(100vw - 10%);
+  .boardWrap {
+    width: calc(100vw - 30%);
+    margin: 0 auto;
     white-space: nowrap;
+    text-align: center;
 
     .guideText {
       margin-top: 10px;
       font-size: 18px;
     }
 
-    .cell {
-      white-space: nowrap;
-      display: inline-block;
-      background: url('src/assets/hole.png') no-repeat;
-      background-size: contain;
-      background-position-x: 4px;
-      float: left;
-      width: 100px;
-      height: 100px;
-      margin: 0 10px 10px 0;
-
-      .mole {
-        opacity: 0;
-        cursor: pointer;
-        transition: all 0.2s ease-in;
+    .board {
+      overflow: hidden;
+      text-align: center;
+      .cell {
+        white-space: nowrap;
+        display: inline-block;
+        background: url('src/assets/hole.png') no-repeat;
+        background-size: contain;
+        background-position-x: 4px;
+        float: left;
         width: 100px;
-        text-align: center;
+        height: 100px;
+        margin: 0 10px 10px 0;
 
-        &.up {
-          opacity: 1;
+        .mole {
+          opacity: 0;
           cursor: pointer;
+          transition: all 0.2s ease-in;
           width: 100px;
-          height: 100px;
-          background-size: contain;
-        }
+          text-align: center;
 
-        img {
-          height: 100px;
+          &.up {
+            opacity: 1;
+            cursor: pointer;
+            width: 100px;
+            height: 100px;
+            background-size: contain;
+          }
+
+          img {
+            height: 100px;
+          }
         }
       }
-    }
+
+
+
+  }
 
     .lineBreak {
       &:after {
@@ -81,6 +80,15 @@
       display: block;
       content: "";
       margin-bottom: 50px;
+    }
+  }
+
+  .btn {
+    @include commonButtonMixin(45%);
+    margin-bottom: 50px;
+    margin-right: 5px;
+    &:first-child {
+      margin-right: 5px;
     }
   }
 }
