@@ -8,6 +8,7 @@ export const useMoveMoles = (isPlaying) => {
   const { row, col, mole: maxMole } = useRecoilValue(userGameSettingState);
   const [moles, setMoles] = useState(Array.from({ length: row * col }, () => 0) || []);
   const [showTime, setShowTime] = useState(CONSTANT.TIME.MAX_SHOW_MOLE_TIME);
+  const whacked = useRef(null);
 
   useEffect(() => {
     let moleInterval;
@@ -21,6 +22,13 @@ export const useMoveMoles = (isPlaying) => {
       clearInterval(moleInterval);
     };
   }, [isPlaying, moles, showTime]);
+
+  useEffect(() => {
+    if (whacked.current === null) return;
+    const updateMoles = getRandomMoles();
+    updateMoles[whacked.current] = 0;
+    setMoles(updateMoles);
+  }, [whacked.current]);
 
   const getRandomMoles = () => {
     const updateMoles = moles.map((mole) => (mole = 0));
@@ -41,9 +49,7 @@ export const useMoveMoles = (isPlaying) => {
   }, []);
 
   const handleWhack = (idx) => {
-    const newMoles = [...moles];
-    newMoles[idx] = 0;
-    setMoles(newMoles);
+    whacked.current = idx;
   };
 
   return { moles, handleWhack, showTime, setShowTime };

@@ -8,7 +8,7 @@ export const CONSTANT = {
   TIME: {
     TIME_LIMIT: 60000,
     MIN_SHOW_MOLE_TIME: 300,
-    MAX_SHOW_MOLE_TIME: 600,
+    MAX_SHOW_MOLE_TIME: 900,
   },
   GAME_STATUS: {
     PLAYING: {
