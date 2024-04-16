@@ -1,0 +1,15 @@
+@import "../../styles/_mixin.scss";
+.innerWrap {
+  display: block;
+  background: #b1dad4;
+  text-align: center;
+  padding: 3% 5%;
+  ul {
+    padding-top: 50px;
+    list-style-type:none;
+    li {
+      background-color: #ffffff;
+      margin-bottom: 20px;
+    }
+  }
+}
